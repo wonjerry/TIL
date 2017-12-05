@@ -1,6 +1,6 @@
-2017-12-4
+##redux에 대한 생각
 
-redux에 대한 생각
+###2017-12-4
 
 redux는 flux 구조를 바탕으로 만든 라이브러리로, react app 전체의 state 관리를 도와준다. 여기서 주의해야 할 점은 redux의 state는 react의 state와 전혀다르다는 점이다
 
@@ -23,3 +23,5 @@ redux의 state는 앱 전체의 state이다.  redux의 state 변경 과정은 �
 
 - 이 링크들을 보니 store 내부의 state에 대해 깊은 복사를 매우 많이 행하지 않는다면 대부분 얕은복사 즉 referencing을 하기 때문에 성능에 문제가 되지 않는다고 한다.
 - 하지만 실 사용하는 입장이 되면 이것도 실제로 측정을 해봐야 할 부분인 것 같다.
+
+## 이미지 출처 : [노마드 코더](https://academy.nomadcoders.co/courses)
