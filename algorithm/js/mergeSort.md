@@ -30,4 +30,4 @@
 	  return result.concat(left.slice(l,left.length)).concat(right.slice(r,right.length));
 	}
 
-callback은 혹시 obj array를 해당 obj의 원소에 대해 sorting 하고 싶을 때 callback을 넣으면 가능하게 하였다.
+callback은 혹시 obj array를 해당 obj의 property에 대해 sorting 하고 싶을 때 callback을 넣으면 가능하게 하였다.
