@@ -120,5 +120,71 @@ p -> q가 가능할 때, p가 루트에 더 가깝다면 p는 q의 조상, q는 
 	    return 0;
 	}
 
+### 트리의 탐색
+- 트리의 탐색은 DFS/BFS 알고리즘을 이용해서 할 수 있다.
+- 트리는 사이클이 없는 그래프이기 때문에 임의의 두 정점 사이의 경로는 1개이다.
+- 따라서, BFS  알고리즘을 사용하면 각 층? 에 있는 노드들을 먼저 탐색 해 보면서 최단 거리를 구할 수 있다.
+- 이유 : 각 노드간 연결된 경로가 1개라 찾은 그 경로가 최단 경로이기 때문이다.
 
+#### 트리의 부모 찾기 문제
+그래프로 트리를 입력받고, 루트를 1이라고 정했을 때 각 노드의 부모를 찾는 문제
 
+	#include <algorithm>
+	#include <iostream>
+	#include <vector>
+	#include <queue>
+	
+	using namespace std;
+	
+	vector<int> a[100001];
+	int parent[100001];
+	bool check[100001];
+	
+	void bfs(int start) {
+		queue<int> q;
+		q.push(start);
+		check[start] = true;
+		while (!q.empty()) {
+			int node = q.front();
+			q.pop();
+	
+			for (int y : a[node]) {
+				if (check[y] == false) {
+					parent[y] = node;
+					check[y] = true;
+					q.push(y);
+				}
+			}
+		}
+	}
+	
+	int main() {
+		int n;
+		cin >> n;
+	
+		for (int i = 1; i < n; i++) {
+			int s, e;
+			cin >> s >> e;
+			a[s].push_back(e);
+			a[e].push_back(s);
+		}
+	
+		bfs(1);
+	
+		for (int i = 2; i <= n; i++) {
+			printf("%d\n",parent[i]);
+		}
+	    
+	    return 0;
+	}
+
+- 트리 구조를 생각 해 봤을 때 bfs 탐색을 하면 각 층의 상위 노드들은 고정 되어있으므로 차례차례 내려가면서 자신의 부모를 체크할 수 있다.
+
+#### 트리의 지름
+- 트리에 존재하는 모든 경로 중에서 가장 긴 것의 길이를 트리의 지름이라고 한다.
+- 트리의 지름은 탐색 2번으로 알 수 있다.
+- 루트에서 모든 정점까지의 길이를 구하고, 그중 길이가 최대인 정점을 저장 해 둔다.
+- 최대 길이의 정점에서 다시 그곳을 기점으로 가장 긴 길이를 구한다.
+- 이렇게 하면 트리의 지름을 알 수 있다.
+
+// 트리 지름 코드 최적화 후 진행하기
