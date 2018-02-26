@@ -3,11 +3,13 @@
 ### Actions
 actions은 내가 만든 app 에서 store로 보내는 데이터의 payload 이다. actions는 스토어에 보낼 수 있는 유일한 데이터이다. 우리는 store.dispatch()를 통해서 actions을 보낼 수 있다.
 
+```javascript
 	const ADD_TODO = 'ADD_TODO'
 	{
 	  type: ADD_TODO,
 	  text: 'Build my first Redux app'
 	}
+```
 
  actions는 자바스크립트 객체이다. action은 무조건 type을 포함해야하며 이것을 통해 어떤 동작을 할지 정해진다. type은 string 상수로 할당되어야 한다.
 
@@ -22,26 +24,32 @@ type과 함께 다른 데이터도 같이 보낼 수 있다. 위의 예제 처�
 
 redux에서는 action creator는 간단하게 actions을 return 한다.
 
+```javascript
 	function actionCreator(text) {
 	  return {
 	    type: ADD_TODO,
 	    text
 	  }// action
 	}
+```
 
 기본적인 Flux 에서는 action creator는 dispatch를 발생하기도 한다. 그러나 Redux에서는 좀 다르다 Redux에서는 dispatch를 이런식으로 사용한다.
 
+```javascript
 	dispatch(addTodo(text)) // addTodo return action
 	dispatch(completeTodo(index))
+```
 
 아니면 이렇게도 사용 가능하다.
 
+```javascript
 	const boundAddTodo = text => dispatch(addTodo(text))
 	const boundCompleteTodo = index => dispatch(completeTodo(index))
 	// addTodo를 거쳐서 action이 생성되고,
 	//dispatch에 type과 기타 데이터가 들어간 js obj가 들어가게 된다.
 	boundAddTodo(text)
 	boundCompleteTodo(index)
+```
 
 dispatch function은 store를 통해서 직접 접근할 수 있지만 react에서는 react-redux의 connect 함수를 통해 접근 가능하다.
 
@@ -49,6 +57,7 @@ bindActionCreators 함수를 사용하여 많은 action creator를 dispatch 함�
 
 actions.js
 
+```javascript
 	/*
 	 * action types
 	 */
@@ -82,6 +91,7 @@ actions.js
 	export function setVisibilityFilter(filter) {
 	  return { type: SET_VISIBILITY_FILTER, filter }
 	}
+```
 
 ### Reducers
 Actions는 뭔가 일어났다 정도만 알려준다. 하지만 app의 state를 어떻게 바꿀 것인지는 모른다. 이 작업을 하는 것이 reducer 이다.
@@ -89,7 +99,9 @@ Actions는 뭔가 일어났다 정도만 알려준다. 하지만 app의 state를
 #### Handling Actions
 reducer는 previous state와 action을 받는 함수이다. 그리고 new state를 return  한다.
 
+```javascript
 	(previousState, action) => newState
+```
 
 reducer 내부에서 하지 말아야 할 것들이 있다.
 - argument를 복제하면 안된다.
@@ -102,6 +114,7 @@ reducer 내부에서 하지 말아야 할 것들이 있다.
 
 일단 initial state를 만들어야 한다. Redux는 맨 처음에 reducer를 undefined state와 함께 호출 할 것이다. 이때가 우리가 만든 initial state를 적용할 때다.
 
+```javascript
 	const initialState = {
 	  visibilityFilter: VisibilityFilters.SHOW_ALL,
 	  todos: []
@@ -111,9 +124,11 @@ reducer 내부에서 하지 말아야 할 것들이 있다.
 	  // and just return the state given to us.
 	  return state
 	}
+```
 
 그 다음으로 action type에 따라서 어떤 일을 할 지 결정 해 주자.
 
+```javascript
 	function todoApp(state = initialState, action) {
 	  switch (action.type) {
 	    case SET_VISIBILITY_FILTER:
@@ -124,8 +139,11 @@ reducer 내부에서 하지 말아야 할 것들이 있다.
 	      return state
 	  }
 	}
+```
+
 우리는 매개인자로 들어온 state를 복제할 수 없다. 그래서 object.assgn을 통해서 새로운 {} 객체에 원래있던 state의 property들과 new state의 property를 넣어주는 것이다. { ...state, ...newState}도 가능하다.
 
+```javascript
 	import {
 	  ADD_TODO,
 	  TOGGLE_TODO,
@@ -155,6 +173,7 @@ reducer 내부에서 하지 말아야 할 것들이 있다.
 	      return state
 	  }
 	}
+```
 
 ### Store
 이전에서 같이 살펴봤듯, action은 어떤 이벤트가 발생했는지를 나타내고, reducer는 actions에 따라 state를 업데이트 한다.
@@ -168,12 +187,15 @@ Strore은 action과 reducer를 사용한다. 그리고 아래의 것들을 한�
 
 store는 reducer만 있다면 쉽게 만들 수 있다.
 
+```javascript
 	import { createStore } from 'redux'
 	import todoApp from './reducers'
 	let store = createStore(todoApp)
+```
 
 만약 inital state를 명시하고 싶다면 두번째 매개변수에 넣어줄 수도 있다.
 
+```javascript
 	let store = createStore(todoApp, window.STATE_FROM_SERVER)
 
 	import {
@@ -202,6 +224,7 @@ store는 reducer만 있다면 쉽게 만들 수 있다.
 
 	// Stop listening to state updates
 	unsubscribe()
+```
 
 이런식으로 actions를 불러오고 todoApp reducer를 통해 store를 만들고 store.dispatch(action)을 통해 state를 변경 할 수 있다.
 

@@ -1,5 +1,6 @@
 ### mixin 예제
 
+```javascript
     function mixEvents(obj) {
 	  /*밖으로 빼줄 이유 없이 이 스코프에 선언해 준다.*/
 	  var events = {};
@@ -50,7 +51,7 @@
 	obj.age++;
 
 	obj.trigger('ageChange', 'wow1', 'wow2', 'wow3');
-
+```
 
 - mixin의 기본 마인드는 외부에서 들어온 객체는 더럽히지 않는다 이다.
 - 그래서 외부에서 들어온 객체에 어떤 key, value를 기존에 있던 데이터가 덮어씌여질 수 있다.

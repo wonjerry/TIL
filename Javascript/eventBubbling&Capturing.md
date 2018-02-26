@@ -17,6 +17,7 @@ HTML 이벤트 모델이 실행되는 두 단계가 있다.
 - 최 하위 element가 클릭되면 그 element의 이벤트가 먼저 실행되고 그 element의 부모 element를 탐색하면서 등록된 이벤트가 존재하는지 확인하고 모두 실행시킨다.
 - 이 과정이 마치 탄산 음료의 거품처럼 올라온다고 하여 이벤트 버블링이라고 부른다.
 
+```javascript
 	var firstElement = document.getElementById('first');
 	var secondElement = document.getElementById('second');
 	var thirdElement = document.getElementById('third');
@@ -44,6 +45,7 @@ HTML 이벤트 모델이 실행되는 두 단계가 있다.
 	thirdElement.addEventListener('click', function () {
 	  console.log('Bubbling: ' + thirdElement.id);
 	});
+```
 
 html에 div를 3개 중첩하고 가장 바깥쪽 div 부터 id를 first, second, third라고 명명하자.
 

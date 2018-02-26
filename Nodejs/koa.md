@@ -27,6 +27,7 @@ koa는 generator function middleware들의 배열로 구성 되어 있으며, �
 
 예시를 한번 살펴보자.
 
+```javascript
 	var koa = require('koa');
 	var app = koa();
 	 
@@ -64,6 +65,7 @@ koa는 generator function middleware들의 배열로 구성 되어 있으며, �
 	});
 	
 	app.listen(3000);
+```
 
 generator 함수 내부에 yield next라는 것이 있는 것은 console.log('1');을 실행하고 나서 다음번 요청 처리 함수를 처리하라는 것이다.
 
@@ -76,6 +78,7 @@ generator 함수 내부에 yield next라는 것이 있는 것은 console.log('1'
 ### Routing
 koa는 routing 모듈을 제공하지 않는다. 따라서 npm에서 koa-router를 다운받아서 사용해야 한다.
 
+```javascript
 	const Koa = require('koa');
 	const Router = require('koa-router');
 	 
@@ -90,6 +93,7 @@ koa는 routing 모듈을 제공하지 않는다. 따라서 npm에서 koa-router�
 	  .use(router.routes())
 	  .use(router.allowedMethods());
 	app.listen(3000);
+```
 
 router 객체를 생성하고 router에서 제공하는 메소드를 이용해서 curd 처리를 할 수 있다.
 

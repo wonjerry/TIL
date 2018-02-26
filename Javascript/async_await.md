@@ -8,6 +8,7 @@
 
 example
 
+```javascript
 	async function registerInitialExchangeRate() {
 	    // 초기 세팅에 필요한 가상화폐별 데이터를 가져온다.
 	    const tickers = await poloniex.getTickers();
@@ -27,3 +28,4 @@ example
 	        console.error(e);
 	    }
 	}
+```

@@ -11,11 +11,15 @@
 
 예를들어 Array를 보자. Array라는 기본 객체는 우리가 쓰는 형태와는 조금 다르지만 객체 생성을 안하고 forEach를 사용할 수 있다.
 
+```javascript
     Array.prototype.forEach.call(array, cb);
+```
 
 즉 이와 비슷하게 View 성격을 가진 유틸 함수를 만들고, 추가해 두면 언제 어디서나 객체 생성을 안하고 편하게 사용 가능하다.
 
+```javascript
     View.forEach = function(elements, cb) {
 	    Array.prototype.forEach.call(elements, cb);
 	};
+```
 이런식으로 말이다.

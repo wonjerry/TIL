@@ -1,15 +1,21 @@
 ## Lodash throttle, debounce
 
 ### throttle
+
+```javascript
 _.throttle(fn,limit);
 return wrapped function
+```
 
 throttle은 인자값으로 들어온 함수를 한번 실행시킨 후 limit 된 시간이 지나기 전까지 아무리 fn을 실행시켜도 limit시간이 지나지 않으면 실행되지 않도록 하는 함수를 fn에 wrapping 해서 리턴한다.
 
 limit가 지나면 다시 한번 실행 가능하며, limit가 지나기 전까지 fn이 실행되지 않는다.
 ### debounce
+
+```javascript
 _.debounce(fn,limit);
 return wrapped function
+```
 
 debounce 제한시간이 지나기 전까지 fn을 아무리 실행시켜도 실행되지 않는다.
 
